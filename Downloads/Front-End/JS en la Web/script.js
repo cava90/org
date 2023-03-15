@@ -1,3 +1,6 @@
+import checkComplete from "./components/checkComplete.js";
+import trashIcon from "./components/trashIcon.js";
+
 ( () =>{ 
     const btn = document.querySelector("[data-form-btn]");
 
@@ -9,6 +12,7 @@
         const task = document.createElement('li');
         task.classList.add("card");
         input.value = '';
+
         //backticks
         const taskContent = document.createElement("div");
         taskContent.appendChild(checkComplete());
@@ -16,28 +20,13 @@
         titleTask.classList.add("task");
         titleTask.innerText = value;
         taskContent.appendChild(titleTask);
-        const content = document.createElement("i");
-        content.classList.add("fas", "fa-trash-alt", "trashIcon", "icon");
         
-    //    task.innerHTML = content;
         task.appendChild(taskContent);
-        task.appendChild(content);
+        task.appendChild(trashIcon());
         list.appendChild(task);
     };
 
+    // Arrow functions o funciones anonimas
     btn.addEventListener('click', createTask);
-    const checkComplete = () => {
-        const i = document.createElement("i");
-        i.classList.add("far", "fa-check-square", "icon");
-        i.addEventListener('click', completeTask);
-        return i;
-    };
 
-    const completeTask = (event) => {
-    //    console.log(event.target);
-        const element = event.target;
-        element.classList.toggle('fas');
-        element.classList.toggle('completeIcon');
-        element.classList.toggle('far');
-    }
 })();
